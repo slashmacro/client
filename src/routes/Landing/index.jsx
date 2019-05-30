@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import hljs from 'highlight.js/lib/highlight'
+import javascript from 'highlight.js/lib/languages/javascript'
+import 'highlight.js/styles/atom-one-dark.css'
 
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,6 +12,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+
+hljs.registerLanguage('javascript', javascript)
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -25,6 +30,7 @@ const LandingPage = () => {
   }
   useEffect(() => {
     getMacros()
+    hljs.initHighlightingOnLoad()
   }, [])
   return (
     <Container>
@@ -39,7 +45,9 @@ const LandingPage = () => {
               <Typography className={classes.heading}>{macro.title}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography>{macro.macro}</Typography>
+              <pre>
+                <code className="js">{macro.macro}</code>
+              </pre>
             </ExpansionPanelDetails>
           </ExpansionPanel>
         )
