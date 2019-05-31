@@ -7,11 +7,13 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
+import Icon from '@material-ui/core/Icon'
 import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Modal from '@material-ui/core/Modal'
 import TextField from '@material-ui/core/TextField'
+import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 
 // actions
@@ -28,6 +30,9 @@ const useStyles = makeStyles(theme => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)'
+  },
+  icon: {
+    marginRight: theme.spacing(2)
   }
 }))
 
@@ -63,10 +68,20 @@ const UserLoggedIn = ({ user, userLogout }) => {
   const classes = useStyles()
   return (
     <>
-      <Button onClick={handleModalOpen}>New Macro</Button>
+      <Tooltip title="Create a new macro">
+        <IconButton
+          aria-label="Create a new macro"
+          size="small"
+          onClick={handleModalOpen}
+          className={classes.icon}
+        >
+          <Icon className="far fa-plus" />
+        </IconButton>
+      </Tooltip>
       <IconButton size="small" onClick={handleClick}>
         <Avatar alt="User Name" src={user.photo} className={classes.avatar} />
       </IconButton>
+
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem onClick={handleClose}>
           <Typography>View Profile</Typography>
