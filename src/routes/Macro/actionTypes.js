@@ -1,0 +1,3 @@
+export const GET_MACROS_INITIAL = 'macros.GET_MACROS_INITIAL'
+export const GET_MACROS_FAILURE = 'macros.GET_MACROS_FAILURE'
+export const GET_MACROS_SUCCESS = 'macros.GET_MACROS_SUCCESS'

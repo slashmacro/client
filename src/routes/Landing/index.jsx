@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import hljs from 'highlight.js/lib/highlight'
-import javascript from 'highlight.js/lib/languages/javascript'
-import 'highlight.js/styles/atom-one-dark.css'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
@@ -13,7 +10,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-hljs.registerLanguage('javascript', javascript)
+// actions
+import { getAllMacros } from '../Macro/actions'
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -22,19 +20,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const LandingPage = () => {
+const LandingPage = ({ getAllMacros, macros }) => {
   const classes = useStyles()
-  const [macros, set] = useState([])
-  const getMacros = () => {
-    axios.get('/api/macros').then(res => set(res.data))
-  }
+
   useEffect(() => {
-    getMacros()
-    hljs.initHighlightingOnLoad()
-  }, [])
+    getAllMacros()
+  }, [getAllMacros])
+
   return (
     <Container>
-      {macros.map(macro => {
+      {macros.data.map(macro => {
         return (
           <ExpansionPanel key={macro._id}>
             <ExpansionPanelSummary
@@ -56,4 +51,15 @@ const LandingPage = () => {
   )
 }
 
-export default LandingPage
+const mapStateToProps = state => ({
+  macros: state.macros
+})
+
+const mapDispatchToProps = {
+  getAllMacros
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LandingPage)

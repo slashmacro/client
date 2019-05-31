@@ -1,46 +1,42 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 // material-ui
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-
-// actions
-import { getUserSession } from './actions'
+import IconButton from '@material-ui/core/IconButton'
 
 // child components
 import UserLoggedOut from './UserLoggedOut'
 import UserLoggedIn from './UserLoggedIn'
+import LogoIcon from './Logo'
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  leftIcon: {
-    fontSize: '1rem',
-    marginRight: theme.spacing(1)
+  icon: {
+    fontSize: '2.5rem'
   },
   title: {
     flexGrow: 1
   }
 }))
 
-const Navbar = ({ getUserSession, user }) => {
+const Navbar = ({ user }) => {
   const classes = useStyles()
-  useEffect(() => {
-    getUserSession()
-  }, [getUserSession])
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            slashmacro
-          </Typography>
+          <div className={classes.title}>
+            <IconButton size="small">
+              <LogoIcon className={classes.icon} />
+            </IconButton>
+          </div>
           {user.isLoggedIn ? <UserLoggedIn /> : <UserLoggedOut />}
         </Toolbar>
       </AppBar>
@@ -52,11 +48,4 @@ const mapStateToProps = state => ({
   user: state.user
 })
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ getUserSession }, dispatch)
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navbar)
+export default connect(mapStateToProps)(Navbar)

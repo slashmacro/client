@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // components
 import Navbar from 'components/Layout/Navbar'
@@ -7,7 +8,13 @@ import Navbar from 'components/Layout/Navbar'
 // routes
 import LandingPage from './Landing'
 
-const Routes = () => {
+// actions
+import { getUserSession } from 'components/Layout/Navbar/actions'
+
+const Routes = ({ getUserSession }) => {
+  useEffect(() => {
+    getUserSession()
+  }, [getUserSession])
   return (
     <>
       <Navbar />
@@ -26,4 +33,13 @@ const Main = () => {
   )
 }
 
-export default Routes
+const mapStateToProps = state => ({})
+
+const mapDispatchToprops = {
+  getUserSession
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToprops
+)(Routes)
