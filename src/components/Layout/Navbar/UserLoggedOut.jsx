@@ -20,7 +20,7 @@ const useStyle = makeStyles(theme => ({
 const UserLoggedOut = ({ getUserSession }) => {
   const classes = useStyle()
   const handleGoogleLogin = () => {
-    const url = 'http://localhost:8000/auth/google'
+    const url = `http://api.slashmacro.com/auth/google`
     const options = {
       width: 480,
       height: 640

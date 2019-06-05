@@ -30,7 +30,7 @@ const Navbar = ({ user }) => {
   return (
     <div className={classes.root}>
       <AppBar position="static" elevation={0}>
-        <Toolbar>
+        <Toolbar variant="dense">
           <div className={classes.title}>
             <IconButton size="small">
               <LogoIcon className={classes.icon} />

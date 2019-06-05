@@ -20,8 +20,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const LandingPage = ({ getAllMacros, macros }) => {
-  const classes = useStyles()
-
   useEffect(() => {
     getAllMacros()
   }, [getAllMacros])
@@ -33,7 +31,7 @@ const LandingPage = ({ getAllMacros, macros }) => {
           <Grid container spacing={2}>
             {macros.data.map(macro => {
               return (
-                <Grid key={macro._id} item xs={6}>
+                <Grid key={macro._id} item xs={12}>
                   <MacroCard {...macro} />
                 </Grid>
               )

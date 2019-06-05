@@ -12,7 +12,7 @@ const MacroCard = ({ createdOn, createdBy, title, macro }) => {
   const UserAvatar = <Avatar src={photo} />
   const formattedDate = moment(createdOn).fromNow()
   return (
-    <Card>
+    <Card elevation={0}>
       <CardHeader title={title} subheader={formattedDate} avatar={UserAvatar} />
       <CardContent>{macro}</CardContent>
     </Card>
