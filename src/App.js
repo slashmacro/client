@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { ThemeProvider } from '@material-ui/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from 'styled-components'
 
 import theme from 'theme'
 import Routes from 'routes'
@@ -11,7 +10,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <>
-          <CssBaseline />
           <Routes />
         </>
       </BrowserRouter>
