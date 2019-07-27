@@ -3797,6 +3797,11 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+exenv@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
+
 exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/exit/-/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
@@ -8030,6 +8035,20 @@ react-error-overlay@^5.1.6:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
   integrity sha512-X1Y+0jR47ImDVr54Ab6V9eGk0Hnu7fVWGeHQSOXHf/C2pF9c6uy3gef8QUeuUiWlNb0i08InPSE5a/KJzNzw1Q==
+
+react-from-dom@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-from-dom/-/react-from-dom-0.2.2.tgz#9ab0dd17bdb54330a49d21362e5a5bb984efb480"
+  integrity sha512-3CU7KpHiAoOA4xsi9GOWdDCNTiAJPrsgAdqNbv6dnurRV8f2zGManPAQcGiP1fiR5ZXl0Qbu0Mpaec44YtY+cg==
+
+react-inlinesvg@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-inlinesvg/-/react-inlinesvg-1.1.2.tgz#dc6378454e997c73fb546869625d38dc8ce7253a"
+  integrity sha512-wsVa05pBOobLlF4cIXGN0bes6N8EyPmO+CLitdXN4U7RCjVTfKRZMQkiEAnXMYVXHnaLrE+EfuUTu9fAl1GRmg==
+  dependencies:
+    exenv "^1.2.2"
+    once "^1.4.0"
+    react-from-dom "^0.2.2"
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.8.6"

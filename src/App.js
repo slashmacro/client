@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
-import theme from 'theme'
+import theme, { FontStyles } from 'theme'
 import Routes from 'routes'
 
 function App() {
@@ -10,6 +10,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <>
+          <GlobalStyles />
+          <FontStyles />
           <Routes />
         </>
       </BrowserRouter>
@@ -18,3 +20,12 @@ function App() {
 }
 
 export default App
+
+const GlobalStyles = createGlobalStyle`
+  html, body {
+    background-color: ${props => props.theme.colors.black};
+    color: ${props => props.theme.colors.white};
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+  }
+`
