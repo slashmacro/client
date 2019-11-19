@@ -1,53 +1,55 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import { reduxFirestore, firestoreReducer } from 'redux-firestore'
+import { firebaseReducer } from 'react-redux-firebase'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import 'firebase/database'
-import 'firebase/firestore'
 
-// import our reducers
-import * as reducers from 'ducks'
+import reducers from 'ducks'
 
-// init redux dev tools
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ serialize: true })
-    : compose
+const fbConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
+  projectId: process.env.REACT_APP_FIREBASE_PROECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+}
 
-// middleware
-const middleware = applyMiddleware(thunk)
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCM4NQ__N37d4v2a3R9RFkUsE1Lf9p6fYg",
-  authDomain: "slashmacro-234703.firebaseapp.com",
-  databaseURL: "https://slashmacro-234703.firebaseio.com",
-  projectId: "slashmacro-234703",
-  storageBucket: "slashmacro-234703.appspot.com",
-  messagingSenderId: "516991684201",
-  appId: "1:516991684201:web:cbb7d2969e1d4aa3a05cf8",
-  measurementId: "G-RL7K5B6QDJ"
-} // from Firebase Console
-export const rfConfig = {} // optional redux-firestore Config Options
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: 'users',
+}
 
 // Initialize firebase instance
-firebase.initializeApp(firebaseConfig)
-// Initialize Cloud Firestore through Firebase
-firebase.firestore();
+try {
+  firebase.initializeApp(fbConfig)
+} catch (err) {
+  console.log('Error connecting to firebase', err)
+}
 
-// Add reduxFirestore store enhancer to store creator
-const createStoreWithFirebase = compose(
-  reduxFirestore(firebase, rfConfig), // firebase instance as first argument, rfConfig as optional second
-  combineReducers(reducers),
-  composeEnhancers(middleware)
-)(createStore)
-
-// Add Firebase to reducers
+// Add firebase to reducers
 const rootReducer = combineReducers({
-  firestore: firestoreReducer,
-  ...reducers
+  ...reducers,
+  firebase: firebaseReducer,
 })
 
+// devtools
+const composeEnhancers =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        serialize: true,
+      })
+    : compose
+
+const middleware = applyMiddleware(thunk)
+
 // Create store with reducers and initial state
-const initialState = {}
-export default createStoreWithFirebase(rootReducer, initialState)
+const store = createStore(rootReducer, composeEnhancers(middleware))
+
+export const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+}
+
+export default store
