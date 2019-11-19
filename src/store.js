@@ -18,6 +18,7 @@ const fbConfig = {
 // react-redux-firebase config
 const rrfConfig = {
   userProfile: 'users',
+  presence: 'presence',
 }
 
 // Initialize firebase instance
