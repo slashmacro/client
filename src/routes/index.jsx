@@ -5,7 +5,11 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from 'components/Navbar'
 
 // routes
-import LandingPage from './Landing'
+import Landing from './Landing'
+
+// auth
+import Register from './Register'
+import Login from './Login'
 
 const Routes = () => {
   return (
@@ -20,7 +24,9 @@ const Main = () => {
   return (
     <main>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
       </Switch>
     </main>
   )

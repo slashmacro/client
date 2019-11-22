@@ -3,11 +3,25 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore'
 import 'normalize.css'
+
+import firebase from 'config/firebase'
 
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import store, { rrfProps } from './store'
+import store from './store'
+
+const rrfConfig = {
+  userProfile: 'users',
+}
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance,
+}
 
 ReactDOM.render(
   <Provider store={store}>

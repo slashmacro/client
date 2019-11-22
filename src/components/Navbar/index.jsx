@@ -24,6 +24,13 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
+
+      <ul>
+        <li>
+          <NavLink to="/register">Register</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </li>
+      </ul>
     </NavbarWrapper>
   )
 }
