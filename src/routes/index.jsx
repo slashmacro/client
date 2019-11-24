@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 // components
 import Navbar from 'components/Navbar'
+import Container from 'components/Shared/Container'
 
 // routes
 import Landing from './Landing'
@@ -23,11 +24,13 @@ const Routes = () => {
 const Main = () => {
   return (
     <main>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Switch>
+      <Container size="xl">
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+        </Switch>
+      </Container>
     </main>
   )
 }

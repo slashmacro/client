@@ -15,7 +15,7 @@ const StyledContainer = styled(Container)`
   display: block;
   position: relative;
   margin: 0 auto;
-  width: 100%;
+  padding: ${({ fluid }) => (fluid ? 0 : '0 2rem')};
   max-width: ${({ size }) => {
     switch (size) {
       case 'xs':
@@ -27,7 +27,7 @@ const StyledContainer = styled(Container)`
       case 'lg':
         return '960px'
       case 'xl':
-        return '1040px'
+        return '1024px'
       default:
         return '640px'
     }
@@ -36,9 +36,11 @@ const StyledContainer = styled(Container)`
 
 StyledContainer.propTypes = {
   size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  fluid: PropTypes.bool,
 }
 
 StyledContainer.defaultProps = {
+  fluid: false,
   size: 'md',
 }
 

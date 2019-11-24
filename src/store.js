@@ -18,9 +18,9 @@ const middleware = applyMiddleware(thunk, promise)
 
 export default createStore(
   combineReducers({
+    ...reducers,
     firebase: firebaseReducer,
     firestore: firestoreReducer,
-    ...reducers,
   }),
   composeEnhancers(middleware)
 )

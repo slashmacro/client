@@ -14,6 +14,7 @@ import store from './store'
 
 const rrfConfig = {
   userProfile: 'users',
+  useFirestoreForProfile: true,
 }
 
 const rrfProps = {

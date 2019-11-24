@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
+import { useFirebase } from 'react-redux-firebase'
 
 const Login = () => {
   const firebase = useFirebase()
-  const auth = useSelector(state => state.firebase.auth)
 
   const initialState = {
     email: '',
