@@ -1,68 +1,32 @@
 import React from 'react'
-import SVG from 'react-inlinesvg'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-import logo from 'assets/slashmacro.svg'
+import Logo from 'components/Shared/Logo'
+import Container from 'components/Shared/Container'
+import Icon from 'components/Shared/Icon'
 
-const links = [
-  { name: 'Browse', path: '/browse' },
-  { name: 'Guides', path: '/guides' },
-]
-
-const Navbar = () => {
+const Navbar = ({ className }) => {
   return (
-    <NavbarWrapper>
-      <NavLink to="/">
-        <Logo src={logo} />
-      </NavLink>
-
-      <ul>
-        {links.map(link => (
-          <li key={link.name}>
-            <NavLink to={link.path} children={link.name} />
-          </li>
-        ))}
-      </ul>
-
-      <ul>
-        <li>
-          <NavLink to="/register">Register</NavLink>
-          <NavLink to="/login">Login</NavLink>
-        </li>
-      </ul>
-    </NavbarWrapper>
+    <nav className={className}>
+      <Container size="lg">
+        <NavLink to="/">
+          <Logo />
+        </NavLink>
+        <Icon icon="plus" />
+      </Container>
+    </nav>
   )
 }
 
-export default Navbar
+Navbar.propTypes = {
+  className: PropTypes.string.isRequired,
+}
 
-const NavbarWrapper = styled.nav`
-  background-color: ${props => props.theme.colors.black};
-  display: flex;
-  align-items: stretch;
-  padding: 0 2rem;
-
-  ul {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 0.5rem;
-    align-items: stretch;
-
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-
-    li {
-      display: flex;
-      align-items: center;
-      a {
-        padding: 0 0.5rem;
-      }
-    }
-  }
+const StyledNavbar = styled(Navbar)`
+  background-color: ${({ theme }) => theme.colors.offblack};
+  padding: 0.5rem 2rem;
 `
 
-const Logo = styled(SVG)`
-  margin-right: 2rem;
-`
+export default StyledNavbar

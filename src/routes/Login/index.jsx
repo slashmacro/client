@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-
-import firebase from 'config/firebase'
+import { useSelector } from 'react-redux'
+import { useFirebase, isLoaded, isEmpty } from 'react-redux-firebase'
 
 const Login = () => {
+  const firebase = useFirebase()
+  const auth = useSelector(state => state.firebase.auth)
+
   const initialState = {
     email: '',
     password: '',
+    error: null,
   }
   const [form, setForm] = useState(initialState)
 
@@ -14,10 +18,7 @@ const Login = () => {
     e.preventDefault()
     const { email, password } = form
 
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(err => console.error(err))
+    return firebase.login({ email, password }).catch(err => console.error(err))
   }
 
   return (

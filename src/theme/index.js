@@ -4,6 +4,6 @@ export { default as FontStyles } from './fonts'
 
 export default {
   colors: {
-    ...colors
-  }
+    ...colors,
+  },
 }
