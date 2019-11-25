@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
   html, body {
     background-color: ${props => props.theme.colors.black};
     color: ${props => props.theme.colors.white};
-    font-family: 'Lato', sans-serif;
+    font-family: 'PT Sans', sans-serif;
     font-size: 16px;
   }
 `

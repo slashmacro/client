@@ -7,6 +7,7 @@ import Container from 'components/Shared/Container'
 
 // routes
 import Landing from './Landing'
+import New from './New'
 
 // auth
 import Register from './Register'
@@ -29,6 +30,7 @@ const Main = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/new" component={New} />
         </Switch>
       </Container>
     </main>
