@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react'
 import ReactDOM from 'react-dom'
+import * as Sentry from '@sentry/browser'
 import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { createFirestoreInstance } from 'redux-firestore'
@@ -22,6 +23,12 @@ const rrfProps = {
   config: rrfConfig,
   dispatch: store.dispatch,
   createFirestoreInstance,
+}
+
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({
+    dsn: 'https://8d2a51bcbb9d4ddb9f204499635200b7@sentry.io/1835504',
+  })
 }
 
 ReactDOM.render(
