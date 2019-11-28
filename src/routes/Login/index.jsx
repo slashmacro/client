@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import { useFirebase } from 'react-redux-firebase'
 
 const Login = () => {
-  const firebase = useFirebase()
-
   const initialState = {
     email: '',
     password: '',
@@ -15,8 +12,6 @@ const Login = () => {
   const onSubmit = e => {
     e.preventDefault()
     const { email, password } = form
-
-    return firebase.login({ email, password }).catch(err => console.error(err))
   }
 
   return (
