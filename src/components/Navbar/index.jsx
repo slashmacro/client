@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+
+import { AuthContext } from 'context/auth'
 
 import Logo from 'components/Shared/Logo'
 import Container from 'components/Shared/Container'
@@ -14,6 +16,8 @@ const links = [
 ]
 
 const Navbar = ({ className }) => {
+  const { currentUser } = useContext(AuthContext)
+
   return (
     <nav className={className}>
       <Container size="xl" fluid>
@@ -30,7 +34,7 @@ const Navbar = ({ className }) => {
           })}
         </section>
         <section name="actions">
-          {/* {isEmpty ? <LoggedOut /> : <LoggedIn />} */}
+          {currentUser ? <LoggedIn /> : <LoggedOut />}
         </section>
       </Container>
     </nav>

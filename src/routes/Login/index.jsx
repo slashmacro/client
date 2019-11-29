@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 
-const Login = () => {
+import firebase from 'config/firebase'
+
+const Login = ({ history }) => {
   const initialState = {
     email: '',
     password: '',
@@ -9,10 +11,20 @@ const Login = () => {
   const [form, setForm] = useState(initialState)
 
   const onChange = e => setForm({ ...form, [e.target.name]: e.target.value })
-  const onSubmit = e => {
+  const onSubmit = useCallback(async e => {
     e.preventDefault()
-    const { email, password } = form
-  }
+    const { email, password } = e.target.elements
+
+    try {
+      await firebase
+        .auth()
+        .signInWithEmailAndPassword(email.value, password.value)
+
+      return history.push('/')
+    } catch (err) {
+      console.error(err)
+    }
+  })
 
   return (
     <form onSubmit={onSubmit}>

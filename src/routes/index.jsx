@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Route, Switch } from 'react-router-dom'
+
+// context
+import { AuthProvider, AuthContext } from 'context/auth'
 
 // components
 import Navbar from 'components/Navbar'
@@ -13,12 +16,26 @@ import New from './New'
 import Register from './Register'
 import Login from './Login'
 
+const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
+  const { currentUser } = useContext(AuthContext)
+
+  return (
+    <Route
+      {...rest}
+      render={props => {
+        if (currentUser) return <RouteComponent {...props} />
+        return <Route path="/login" />
+      }}
+    />
+  )
+}
+
 const Routes = () => {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
       <Main />
-    </>
+    </AuthProvider>
   )
 }
 
@@ -30,7 +47,7 @@ const Main = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/new" component={New} />
+          <PrivateRoute exact path="/new" component={New} />
         </Switch>
       </Container>
     </main>

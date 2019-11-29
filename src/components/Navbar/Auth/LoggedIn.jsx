@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { withRouter } from 'react-router-dom'
 
 import Avatar from 'components/Shared/Avatar'
 import Icon from 'components/Shared/Icon'
 
-const LoggedIn = () => {
-  const handleLogout = e => {
+import firebase from 'config/firebase'
+
+const LoggedIn = ({ history }) => {
+  const handleLogout = useCallback(async e => {
     e.preventDefault()
-  }
+
+    try {
+      await firebase.auth().signOut()
+      return history.push('/')
+    } catch (err) {
+      return console.error(err)
+    }
+  })
 
   return (
     <>
@@ -17,4 +27,4 @@ const LoggedIn = () => {
   )
 }
 
-export default LoggedIn
+export default withRouter(LoggedIn)
