@@ -12,7 +12,22 @@ Container.propTypes = {
 }
 
 const StyledContainer = styled(Container)`
-  display: block;
+  display: ${({ column, row }) => {
+    if (column || row) return 'grid'
+    return 'block'
+  }};
+
+  ${({ column, row }) => {
+    let grid = []
+    if (grid || row) {
+      if (row) grid.push(`grid-template-rows: ${row};`)
+      if (column) grid.push(`grid-template-columns: ${column};`)
+      grid.push('grid-gap: 1rem;')
+    }
+
+    return grid.join('')
+  }}
+
   position: relative;
   margin: 0 auto;
   padding: ${({ fluid }) => (fluid ? 0 : '0 2rem')};

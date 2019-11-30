@@ -7,6 +7,7 @@ import { AuthContext } from 'context/auth'
 
 import Logo from 'components/Shared/Logo'
 import Container from 'components/Shared/Container'
+import Input from 'components/Shared/Input'
 
 import { LoggedIn, LoggedOut } from './Auth'
 
@@ -25,6 +26,11 @@ const Navbar = ({ className }) => {
           <Logo />
         </NavLink>
         <section name="navigation">
+          <Input
+            placeholder="Search for macros"
+            icon="search-duotone"
+            iconPosition="left"
+          />
           {links.map(({ name, url }) => {
             return (
               <NavLink key={name} to={url}>
@@ -48,6 +54,7 @@ Navbar.propTypes = {
 const StyledNavbar = styled(Navbar)`
   background-color: ${({ theme }) => theme.colors.offblack};
   padding: 1rem 2rem;
+  margin-bottom: 2rem;
 
   > * {
     display: grid;

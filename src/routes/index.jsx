@@ -42,7 +42,7 @@ const Routes = () => {
 const Main = () => {
   return (
     <main>
-      <Container size="xl">
+      <Container size="xl" column="2fr 1fr">
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />

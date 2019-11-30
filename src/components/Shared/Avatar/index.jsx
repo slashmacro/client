@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Avatar = props => {
-  const { className } = props
-  return <span {...props} className={className} />
+const Avatar = ({ className, ...rest }) => {
+  if (rest.onClick) return <button {...rest} className={className} />
+  return <span {...rest} className={className} />
 }
 
 Avatar.propTypes = {
@@ -19,6 +19,8 @@ const StyledAvatar = styled(Avatar)`
     if (src) return `background-image: url(${src}); background-size: cover;`
     return `background-color: ${theme.colors.offwhite};`
   }}
+
+  ${({ onClick }) => (onClick ? 'cursor: pointer' : null)}
 
   border-radius: 50%;
   height: 32px;
