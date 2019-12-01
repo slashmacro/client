@@ -20,7 +20,7 @@ const LoggedIn = ({ history }) => {
 
   return (
     <>
-      <Icon icon="plus-duotone" />
+      <Icon to="/new" icon="plus-duotone" />
       <Icon icon="bells-duotone" />
       <Avatar onClick={handleLogout} />
     </>
