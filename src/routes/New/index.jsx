@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import Form from 'components/Shared/Form'
+import Card from 'components/Shared/Card'
+
+import firebase from 'config/firebase'
+
 const initialState = {
   title: '',
   description: '',
@@ -18,6 +23,11 @@ const New = props => {
 
     const submit = new Promise((resolve, reject) => {
       try {
+        firebase
+          .firestore()
+          .collection('macros')
+          .add(state)
+          .then(() => resolve())
         resolve()
       } catch (err) {
         return reject(err)
@@ -27,20 +37,32 @@ const New = props => {
     return submit.then(() => history.push('/')).catch(err => console.err(err))
   }
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="title">Title</label>
-      <input name="title" id="title" value={state.title} onChange={onChange} />
-      <label htmlFor="description">Description</label>
-      <input
-        name="description"
-        id="description"
-        value={state.description}
-        onChange={onChange}
-      />
-      <label htmlFor="macro">Macro</label>
-      <input name="macro" id="macro" value={state.macro} onChange={onChange} />
-      <button type="submit">Submit</button>
-    </form>
+    <Card>
+      <Form onSubmit={onSubmit}>
+        <Form.Input
+          id="title"
+          name="title"
+          label="Title"
+          onChange={onChange}
+          fluid
+        />
+        <Form.Input
+          id="description"
+          name="description"
+          label="Description"
+          onChange={onChange}
+          fluid
+        />
+        <Form.Input
+          id="macro"
+          name="macro"
+          label="Macro"
+          onChange={onChange}
+          fluid
+        />
+        <Form.Button type="submit">Submit</Form.Button>
+      </Form>
+    </Card>
   )
 }
 

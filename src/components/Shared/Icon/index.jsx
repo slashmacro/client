@@ -46,27 +46,17 @@ const StyledIcon = styled(Icon)`
   height: ${({ size }) => handleSize(size)};
   width: ${({ size }) => handleSize(size)};
   background-color: white;
+  opacity: 1;
+  transition: opacity ease-in-out 0.2s;
 
-  ${({ to, onClick, size }) => {
-    let calcSize = handleSize(size)
-    return `
-      &:hover {
-        &:after {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          height: ${calcSize};
-          width: ${calcSize};
-          border-radius: 50%;
-          background-color: white;
-          z-index: 999999999;
+  ${({ to, onClick }) => {
+    if (to || onClick) {
+      return `
+        &:hover {
+          opacity: 0.5;
         }
-      }
-    `
+      `
+    }
   }}
 `
 
