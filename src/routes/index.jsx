@@ -4,17 +4,8 @@ import { Route, Switch } from 'react-router-dom'
 // context
 import { AuthProvider, AuthContext } from 'context/auth'
 
-// components
-import Navbar from 'components/Navbar'
-import Container from 'components/Shared/Container'
-
 // routes
 import Landing from './Landing'
-import New from './New'
-
-// auth
-import Register from './Register'
-import Login from './Login'
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const { currentUser } = useContext(AuthContext)
@@ -33,7 +24,6 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
 const Routes = () => {
   return (
     <AuthProvider>
-      <Navbar />
       <Main />
     </AuthProvider>
   )
@@ -42,14 +32,9 @@ const Routes = () => {
 const Main = () => {
   return (
     <main>
-      <Container size="xl" column="2fr 1fr">
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/new" component={New} />
-        </Switch>
-      </Container>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+      </Switch>
     </main>
   )
 }
