@@ -79,7 +79,8 @@
     "no-await-in-loop": "off",
     "no-nested-ternary": "off",
     "react/button-has-type": "off",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "prefer-promise-reject-errors": "off"
   },
   "settings": {
     "import/resolver": {

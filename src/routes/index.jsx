@@ -1,31 +1,19 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-// context
-import { AuthProvider, AuthContext } from 'context/auth'
+// components
+import Navbar from 'components/Navbar'
 
 // routes
 import Landing from './Landing'
-
-const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-  const { currentUser } = useContext(AuthContext)
-
-  return (
-    <Route
-      {...rest}
-      render={props => {
-        if (currentUser) return <RouteComponent {...props} />
-        return <Route path="/login" />
-      }}
-    />
-  )
-}
+import NotFound from './NotFound'
 
 const Routes = () => {
   return (
-    <AuthProvider>
+    <>
+      <Navbar />
       <Main />
-    </AuthProvider>
+    </>
   )
 }
 
@@ -34,6 +22,7 @@ const Main = () => {
     <main>
       <Switch>
         <Route exact path="/" component={Landing} />
+        <Route component={NotFound} />
       </Switch>
     </main>
   )
