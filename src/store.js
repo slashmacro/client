@@ -1,14 +1,13 @@
-import { compose, createStore, combineReducers } from 'redux'
-import { firebaseReducer } from 'react-redux-firebase'
-import { firestoreReducer } from 'redux-firestore'
+import { compose, createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-const rootReducer = combineReducers({
-  firebase: firebaseReducer,
-  firestore: firestoreReducer,
-})
+import * as reducers from 'ducks'
+
+const rootReducer = combineReducers({ ...reducers })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const middleware = applyMiddleware(thunk)
 
-const store = createStore(rootReducer, composeEnhancers())
+const store = createStore(rootReducer, composeEnhancers(middleware))
 
 export default store

@@ -3,10 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/browser'
 import { Provider } from 'react-redux'
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
-import { createFirestoreInstance } from 'redux-firestore'
 
-import firebase from 'config/firebase'
 import store from 'store'
 
 import 'normalize.css'
@@ -20,23 +17,9 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const rrfConfig = {
-  userProfile: 'users',
-  useFirestoreForProfile: true,
-}
-
-const rrfProps = {
-  firebase,
-  config: rrfConfig,
-  dispatch: store.dispatch,
-  createFirestoreInstance,
-}
-
 ReactDOM.render(
   <Provider store={store}>
-    <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
-    </ReactReduxFirebaseProvider>
+    <App />
   </Provider>,
   document.getElementById('root')
 )

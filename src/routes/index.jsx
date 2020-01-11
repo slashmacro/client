@@ -1,31 +1,15 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-// components
-import Navbar from 'components/Navbar'
+import Home from './Home'
 
-// routes
-import Landing from './Landing'
-import NotFound from './NotFound'
-
-const Routes = () => {
+// ROUTES
+export default () => {
   return (
-    <>
-      <Navbar />
-      <Main />
-    </>
-  )
-}
-
-const Main = () => {
-  return (
-    <main>
+    <Router>
       <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route component={NotFound} />
+        <Route exact path="/" component={Home} />
       </Switch>
-    </main>
+    </Router>
   )
 }
-
-export default Routes
