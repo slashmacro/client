@@ -5,6 +5,7 @@
   "dependencies": {
     "@sentry/browser": "^5.9.1",
     "axios": "^0.18.0",
+    "immutability-helper": "^3.0.1",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
@@ -18,6 +19,7 @@
     "reakit": "^1.0.0-beta.13",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0",
     "styled-components": "^4.3.2",
     "styled-theming": "^2.2.0"
   },

@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/browser'
 import { Provider } from 'react-redux'
 
+import { connectSocket } from 'utils/io'
+
 import store from 'store'
 
 import 'normalize.css'
@@ -16,6 +18,8 @@ if (process.env.NODE_ENV === 'production') {
     dsn: 'https://8d2a51bcbb9d4ddb9f204499635200b7@sentry.io/1835504',
   })
 }
+
+connectSocket(store)
 
 ReactDOM.render(
   <Provider store={store}>
