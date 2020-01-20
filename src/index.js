@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+// connect to our socket.io server
 connectSocket(store)
 
 ReactDOM.render(

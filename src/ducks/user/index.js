@@ -3,7 +3,6 @@ import update from 'immutability-helper'
 
 const SET_USER = Symbol('SET_USER')
 const UNSET_USER = Symbol('SET_USER')
-const SET_USER_TOKEN = Symbol('SET_USER_TOKEN')
 
 const initialState = {
   loggedIn: false,
@@ -22,15 +21,8 @@ export default (state = initialState, action) => {
       Sentry.configureScope(scope => scope.setUser({ email }))
 
       return update(state, {
-        loggedIn: true,
+        loggedIn: { $set: true },
         account: { $merge: { payload } },
-      })
-    }
-    case SET_USER_TOKEN: {
-      const { payload } = action
-
-      return update(state, {
-        session: { $merge: { payload } },
       })
     }
     case UNSET_USER:
@@ -42,5 +34,4 @@ export default (state = initialState, action) => {
 
 // ACTIONS
 export const setUser = payload => ({ type: SET_USER, payload })
-export const setUserToken = payload => ({ type: SET_USER_TOKEN, payload })
 export const unsetUser = () => ({ type: UNSET_USER })
